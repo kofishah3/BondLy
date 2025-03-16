@@ -1,4 +1,4 @@
-package com.example.new_app2
+package com.example.bondly
 
 import io.flutter.embedding.android.FlutterActivity
 

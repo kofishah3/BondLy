@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.new_app2"
+    namespace = "com.example.bondly"
     compileSdk = 34 // Use the latest version or define in flutter.gradle
     ndkVersion = "25.1.8937393" // Set your actual NDK version
 
@@ -20,7 +20,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.new_app2"
+        applicationId = "com.example.bondly"
         minSdk = 21 // Adjust as needed
         targetSdk = 34
         versionCode = 1
