@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:bondly/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+import 'package:bondly/widgets.dart';
+
+class LandingPage extends StatelessWidget {
+  const LandingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
 
             Column(
               children: [
-                WelcomeText(),
+                Align(alignment: Alignment.centerLeft, child: WelcomeText()),
 
                 SizedBox(height: 20,),
 
@@ -58,7 +59,7 @@ class HomePage extends StatelessWidget {
 
                 SizedBox(height: 15,),
 
-                SocialsLogin(),
+                SocialsLogin(mainColor: Colors.white),
               ],
             )
           ],
@@ -69,58 +70,7 @@ class HomePage extends StatelessWidget {
   
 }
 
-
 // WIDGETS ---------------------------------------------------------------
-
-class SocialsLogin extends StatelessWidget {
-  const SocialsLogin({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Divider(thickness: 2, color: Colors.white.withOpacity(0.85)),
-        
-        Text(
-          "or continue with",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
-            color: Colors.white.withOpacity(0.85),
-            height: 1.5,
-            shadows: [
-              Shadow(
-                color: Colors.black12,
-                offset: Offset(1, 2),
-                blurRadius: 10,
-              )
-            ] 
-          ),
-          textAlign: TextAlign.center,
-        ),
-     
-        SizedBox(height: 15,),
-    
-        Container(
-          width: 230,
-          decoration: const BoxDecoration(
-            color: Colors.transparent
-          ),
-          child: Row(      
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,    
-            children: [
-              buildCircularButton(FontAwesomeIcons.google, Colors.white, Colors.red ),
-              buildCircularButton(FontAwesomeIcons.apple, Colors.white, Colors.black),
-              buildCircularButton(FontAwesomeIcons.facebook, Colors.white, Colors.blue),
-            ],
-          )
-        ),
-      ],
-    );
-  }
-}
 
 class LoginSignUpButtons extends StatelessWidget {
   const LoginSignUpButtons({
@@ -129,11 +79,30 @@ class LoginSignUpButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Column (
       children: [
-        buildButton("Log In", Color(0xFFDC5DB2), Colors.white),
+
+        CustomBorderlessButton (
+          text: 'Log In',
+          textColor: Color(0xFFDC5DB2), 
+          bgColor: Colors.white,
+          onPressed: () {
+            context.go('/login'); //navigate to login page
+          },
+        ), 
+
         const SizedBox(height: 10,),
-        buildOutlinedButton("Sign Up", Colors.white, Colors.transparent, Colors.white),
+
+        CustomOutlinedButton (
+          text: 'Sign Up',
+          borderColor: Colors.white,
+          textColor: Colors.white, 
+          bgColor: Colors.transparent,
+          onPressed: () {
+            context.go('/signup'); //navigate to login page
+          },
+        ), 
+
       ],
     );
   }
@@ -146,17 +115,12 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        color: Colors.transparent
-      ),
-      child: const Column(
+    return Column (
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Welcome to",
-            style: TextStyle(
+            style: TextStyle (
               fontSize: 35,
               fontWeight: FontWeight.w700,
               color: Colors.white,
@@ -174,7 +138,7 @@ class WelcomeText extends StatelessWidget {
     
           Text(
             "BondLy!",
-            style: TextStyle(
+            style: TextStyle (
                 fontSize: 70,
                 fontWeight: FontWeight.w700,
                 color: Colors.white,   
@@ -189,8 +153,8 @@ class WelcomeText extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
     
-          Text.rich(
-            TextSpan(
+          Text.rich ( //so that the word BOND can be bold by itself
+            TextSpan (
               text: "Never miss out with the people you love!\nPlan, Share, and ",
               style: TextStyle(
                 fontSize: 16,
@@ -206,9 +170,9 @@ class WelcomeText extends StatelessWidget {
                 ]  
               ),
               children: [
-                TextSpan(
+                TextSpan (
                   text: "Bond",
-                  style: TextStyle(
+                  style: TextStyle (
                     fontSize: 16,
                     fontWeight: FontWeight.w700, // "Bond" is bold
                     color: Colors.white, 
@@ -226,7 +190,6 @@ class WelcomeText extends StatelessWidget {
             textAlign: TextAlign.left,
           ),
         ],
-      ),
-    );
+      );
   }
 }

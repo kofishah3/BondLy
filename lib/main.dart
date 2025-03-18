@@ -1,17 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:bondly/pages/home.dart';
+import 'package:go_router/go_router.dart';
+// pages imports
+import 'package:bondly/pages/landingpage.dart';
+import 'package:bondly/pages/loginpage.dart';
+import 'package:bondly/pages/signuppage.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final GoRouter _router = GoRouter(
+    routes: [
+      //please rename home to landingpage
+      GoRoute(path: '/', builder: (context, state) => LandingPage()), 
+      GoRoute(path: '/login', builder: (context, state) => LoginPage()),
+      GoRoute(path: '/signup', builder: (context, state) => SignUpPage()),
+    ],
+  );
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp
+    return MaterialApp.router
     (
       title: 'BondLy',
       theme: ThemeData(
@@ -20,7 +33,7 @@ class MyApp extends StatelessWidget {
       
       debugShowCheckedModeBanner: false,
       
-      home: const HomePage(),
+      routerConfig: _router,
     );
   }
 }
