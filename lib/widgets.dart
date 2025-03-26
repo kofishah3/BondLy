@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-final Color defaultTextColor = Color(0xFF2E3A59);
-final Shadow defaultTextShadow = Shadow (color: Colors.black.withOpacity(0.05), offset: Offset(1, 2), blurRadius: 8,);
+import 'package:bondly/colors.dart';
 
  // Custom Button
 class CustomBorderlessButton extends StatelessWidget 
@@ -48,18 +46,22 @@ class CustomGradientButton extends StatelessWidget {
     required this.textColor,
     required this.gradient,
     required this.onPressed,
+    required this.heightUser,
+    required this.widthUser,
   });
 
   final String text;
   final Color textColor;
   final Gradient gradient;
+  final double heightUser;
+  final double widthUser;
   final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(      
-      width: double.infinity,
-      height: 50,
+      width: widthUser,
+      height: heightUser,
       child: Stack(
         children: [
           // Gradient Background
@@ -201,13 +203,15 @@ class _ColoredInputFieldState extends State<ColoredInputField> {
             widget.labelText,
             style: TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: widget.labelFontColor,
               backgroundColor: widget.labelbgColor,
               shadows: [defaultTextShadow],
             ),
           ),
         ),
+
+        SizedBox(height: 2,),
 
         // text input field
         // wrapped in container to have border radius
@@ -223,8 +227,8 @@ class _ColoredInputFieldState extends State<ColoredInputField> {
               decoration: InputDecoration(              
                 filled: true,          
                 fillColor: Colors.transparent,
-                border: InputBorder.none, // Removes the border
-              ),
+                border: InputBorder.none, 
+              ),              
             ),
           ),
         )

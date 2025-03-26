@@ -2,8 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import 'package:bondly/widgets.dart';
+import 'package:bondly/colors.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -78,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
           Container (
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             width: double.infinity,
-            height: 500,
+            height: 460,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               gradient: LinearGradient(
@@ -92,13 +94,18 @@ class _LoginPageState extends State<LoginPage> {
             ),
 
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 emailInputField(),
 
+                SizedBox(height: 15,),
+
                 passwordInputField(),
+              
+                const Spacer(),
 
                 logInButton(),
+
+                SizedBox(height: 10,),
 
                 SocialsLogin(mainColor: defaultTextColor,),
               ]
@@ -111,52 +118,51 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Column logInButton() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
-                children: [
-                  CustomGradientButton(
-                    text: "Log In", 
-                    textColor: Colors.white, 
-                    gradient: const LinearGradient(
-                      colors: [
-                        Color(0xFFF04CBA),
-                        Color(0xFFF382CE)
-                      ],
-                      begin: Alignment.centerLeft,
-                      end: Alignment.centerRight,
-                    ), 
-                    onPressed: () {}
-                  ),
-                  
-                  const SizedBox(height: 10,),
-                  
-                  RichText(
-                    text: TextSpan(
-                      text: "Don't have an account? ",
-                      style: TextStyle(
-                        fontFamily: 'Poppins',
-                        color: defaultTextColor,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      ),
-                       
-                      children: [
-                        TextSpan(
-                          text: "Sign Up",
-                          style: TextStyle(
-                            color: Color(0xFFF04CBA),
-                            fontSize: 13,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          recognizer: TapGestureRecognizer() 
-                            ..onTap = () {
-                            context.go('/signup');
-                          }
-                        )
-                      ]
-                    )
-                  ),
-                ],
-              );
+      children: [
+        CustomGradientButton(
+          text: "Log In", 
+          textColor: Colors.white, 
+          gradient: themeProvider.currentGradientTheme,
+          heightUser: 40,
+          widthUser: double.infinity,
+          onPressed: () {
+            context.go('/homepage');
+          }
+        ),
+        
+        const SizedBox(height: 5,),
+        
+        RichText(
+          text: TextSpan(
+            text: "Don't have an account? ",
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              color: defaultTextColor,
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+            ),
+              
+            children: [
+              TextSpan(
+                text: "Sign Up",
+                style: TextStyle(
+                  color: themeProvider.currentThemeColor,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                ),
+                recognizer: TapGestureRecognizer() 
+                  ..onTap = () {
+                  context.go('/signup');
+                }
+              )
+            ]
+          )
+        ),
+      ],
+    );
   }
 
   ColoredInputField emailInputField() {
