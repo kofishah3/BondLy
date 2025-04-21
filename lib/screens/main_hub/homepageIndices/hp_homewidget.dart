@@ -39,36 +39,8 @@ class HomeWidget extends StatelessWidget {
     
           ],
         ),
-        
-        topRightButtons(),
       ]
     );
-  }
-
-  SafeArea topRightButtons() {
-    return SafeArea(
-        child: Align(              
-          alignment: Alignment.topRight,
-          child: Row(                
-            mainAxisSize: MainAxisSize.min,            
-            children: [
-              IconButton(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-                onPressed: () {}, 
-                icon: Icon(Icons.notifications_none_outlined),
-                iconSize: 25,
-              ),
-      
-              IconButton(
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 1),
-                onPressed: () {}, 
-                icon: Icon(Icons.more_horiz),
-                iconSize: 25,
-              ),
-            ],
-          ),
-        ),
-      );
   }
 
   Column recentActivity() {

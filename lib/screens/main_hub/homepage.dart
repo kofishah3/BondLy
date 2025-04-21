@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:bondly/providers/theme_provider.dart';
 import 'package:bondly/screens/main_hub/homepageIndices/hp_homewidget.dart';
+import 'package:bondly/screens/main_hub/homepageIndices/hp_friendswidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -28,62 +29,7 @@ class _HomePageState extends State<HomePage> {
     final List<Widget> _widgetOptions = <Widget>[
       HomeWidget(themeProvider: themeProvider),
 
-      Stack(
-        alignment: Alignment.topCenter,
-        children: [      
-          SafeArea(            
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                // Centered title
-                Text(
-                  "Friends",
-                  style: TextStyle(
-                    color: themeProvider.currentTextColor,
-                    shadows: [defaultTextShadow],
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-
-                // Row of icons overlaid
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: () {},
-                      icon: Icon(Icons.add_circle_outline),
-                      iconSize: 25,
-                    ),
-
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          onPressed: () {},
-                          icon: Icon(Icons.notifications_none_outlined),
-                          iconSize: 25,
-                        ),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          onPressed: () {},
-                          icon: Icon(Icons.more_horiz),
-                          iconSize: 25,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      FriendsWidget(themeProvider: themeProvider),
 
       Text('Index 2: Calendar', style: optionStyle),
       Text('Index 3: Memories', style: optionStyle),
@@ -98,7 +44,9 @@ class _HomePageState extends State<HomePage> {
         decoration: BoxDecoration(gradient: themeProvider.currentGradientBg),
         child: Stack(
           children:[
-            Center(child: _widgetOptions.elementAt(_selectedIndex)),
+            topRightButtons(),
+
+            _widgetOptions.elementAt(_selectedIndex),
 
             Align(
               alignment: Alignment.bottomCenter,
@@ -106,6 +54,33 @@ class _HomePageState extends State<HomePage> {
             )
           ],
         )
+      ),
+    );
+  }
+
+  Align topRightButtons() {
+    return Align(
+      alignment: Alignment.topRight,
+      child: SafeArea(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            IconButton(
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {},
+              icon: Icon(Icons.notifications_none_outlined),
+              iconSize: 25,
+            ),
+            IconButton(
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {},
+              icon: Icon(Icons.more_horiz),
+              iconSize: 25,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -182,3 +157,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

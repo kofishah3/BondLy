@@ -219,11 +219,11 @@ class _ThemeSelectionState extends State<ThemeSelection> {
 }
 
 class DisplayNameSelection extends StatefulWidget {    
-    const DisplayNameSelection({super.key});
-    
-    @override
-    State<DisplayNameSelection> createState() => _DisplayNameSelectionState();
-  }
+  const DisplayNameSelection({super.key});
+  
+  @override
+  State<DisplayNameSelection> createState() => _DisplayNameSelectionState();
+}
 
 class _DisplayNameSelectionState extends State<DisplayNameSelection> {
   bool isLightSelected = true;
