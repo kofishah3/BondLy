@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
 class CpAboutyourself extends StatefulWidget{
   const CpAboutyourself({super.key});
@@ -23,7 +23,7 @@ class _CpAboutyourselfState extends State<CpAboutyourself> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          gradient: whiteGradientBg
+          gradient: themeProvider.currentGradientBg
         ),
 
         child: Stack(
@@ -38,7 +38,7 @@ class _CpAboutyourselfState extends State<CpAboutyourself> {
                   inputFontColor: defaultTextColor,
                   inputbgColor: Color(0xFFEFE5FF),
                   labelText: " Interests and Hobbies:",
-                  labelFontColor: defaultTextColor,
+                  labelFontColor: themeProvider.currentTextColor,
                   labelbgColor: Colors.transparent,
                 ),
 
@@ -48,7 +48,7 @@ class _CpAboutyourselfState extends State<CpAboutyourself> {
                   inputFontColor: defaultTextColor,
                   inputbgColor: Color(0xFFEFE5FF),
                   labelText: " Bio:",
-                  labelFontColor: defaultTextColor,
+                  labelFontColor: themeProvider.currentTextColor,
                   labelbgColor: Colors.transparent,
                 ),
               ],
@@ -84,7 +84,7 @@ class _CpAboutyourselfState extends State<CpAboutyourself> {
             Text(
               "About Yourself",
               style: TextStyle(
-                color: defaultTextColor,
+                color: themeProvider.currentTextColor,
                 shadows: [defaultTextShadow],
                 fontSize: 30,
                 fontWeight: FontWeight.w700,

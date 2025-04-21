@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
 class SetUpComplete extends StatefulWidget {
   const SetUpComplete({super.key});

@@ -4,17 +4,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -35,9 +35,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
           child: Stack(
             children: [  
-              // Main login content area                        
-              contentBox(),
-
               // Back button
               SafeArea(
                 child: Align(
@@ -52,6 +49,9 @@ class _SignUpPageState extends State<SignUpPage> {
                   ),
                 ),
               ),
+
+              // Main login content area                        
+              contentBox(),
               
             ],
           )
@@ -68,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text (
-            "Nice to meet you!",
+            "Welcome Back!",
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.w700,
@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Container (
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             width: double.infinity,
-            height: 600,
+            height: 460,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               gradient: LinearGradient(
@@ -99,26 +99,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
                 SizedBox(height: 15,),
 
-                usernameInputField(),
-
-                SizedBox(height: 15,),
-
                 passwordInputField(),
-
-                SizedBox(height: 15,),
-
-                confirmPasswordField(),
-
+              
                 const Spacer(),
 
-                SignUpButton(),
+                logInButton(),
 
                 SizedBox(height: 10,),
-                
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: SocialsLogin(mainColor: defaultTextColor,)
-                ),
+
+                SocialsLogin(mainColor: defaultTextColor,),
               ]
             ),
           ),
@@ -128,45 +117,27 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ColoredInputField usernameInputField() {
-    return ColoredInputField(
-                inputFontColor: defaultTextColor,
-                inputbgColor: Color(0xFFEFE5FF),
-                labelText: "Username:",
-                labelFontColor: defaultTextColor,
-                labelbgColor: Colors.transparent,
-              );
-  }
-
-  ColoredInputField confirmPasswordField() {
-    return ColoredInputField(
-                inputFontColor: defaultTextColor,
-                inputbgColor: Color(0xFFEFE5FF),
-                labelText: "Confirm Password:",
-                labelFontColor: defaultTextColor,
-                labelbgColor: Colors.transparent,
-              );
-  }
-
-  Column SignUpButton() {
+  Column logInButton() {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Column(
       children: [
         CustomGradientButton(
-          text: "Sign Up", 
+          text: "Log In", 
           textColor: Colors.white, 
           gradient: themeProvider.currentGradientTheme,
           heightUser: 40,
           widthUser: double.infinity,
-          onPressed: () { context.go('/createprofile'); }
+          onPressed: () {
+            context.go('/homepage');
+          }
         ),
         
         const SizedBox(height: 5,),
         
         RichText(
           text: TextSpan(
-            text: "Already have an account? ",
+            text: "Don't have an account? ",
             style: TextStyle(
               fontFamily: 'Poppins',
               color: defaultTextColor,
@@ -176,7 +147,7 @@ class _SignUpPageState extends State<SignUpPage> {
               
             children: [
               TextSpan(
-                text: "Log In",
+                text: "Sign Up",
                 style: TextStyle(
                   color: themeProvider.currentThemeColor,
                   fontSize: 12,
@@ -184,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
                 recognizer: TapGestureRecognizer() 
                   ..onTap = () {
-                  context.go('/login');
+                  context.go('/signup');
                 }
               )
             ]
@@ -204,13 +175,37 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ColoredInputField passwordInputField() {
-    return ColoredInputField(
-        inputFontColor: defaultTextColor,
-        inputbgColor: Color(0xFFEFE5FF),
-        labelText: "Password:",
-        labelFontColor: defaultTextColor,
-        labelbgColor: Colors.transparent,
+  Column passwordInputField() {
+    return Column(
+      children: [
+        ColoredInputField(
+          inputFontColor: defaultTextColor,
+          inputbgColor: Color(0xFFEFE5FF),
+          labelText: "Password:",
+          labelFontColor: defaultTextColor,
+          labelbgColor: Colors.transparent,
+        ),
+
+        const SizedBox(height: 7),
+
+        //forgot password button
+        Align(        
+          alignment: Alignment.centerRight,
+          child: RichText(
+            text: TextSpan(
+              text: 'Forgot Password?',
+              style: TextStyle(
+                color: defaultTextColor,
+                fontFamily: 'Poppins',
+                fontSize: 13,
+                fontWeight: FontWeight.w500,
+              ),
+              recognizer: TapGestureRecognizer() 
+                ..onTap = () {}
+            )
+          )
+        )
+      ],
     );
   }
 }

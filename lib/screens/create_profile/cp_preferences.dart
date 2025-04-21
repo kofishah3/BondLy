@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
 class CpPreferences extends StatefulWidget {
   const CpPreferences({super.key});
@@ -22,7 +22,7 @@ class _CpPreferencesState extends State<CpPreferences> {
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 25),
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(gradient: whiteGradientBg),
+        decoration: BoxDecoration(gradient: themeProvider.currentGradientBg),
         child: Stack(
           children: [
             Column(
@@ -78,7 +78,7 @@ class _CpPreferencesState extends State<CpPreferences> {
             Text(
               "Preferences",
               style: TextStyle(
-                color: defaultTextColor,
+                color: themeProvider.currentTextColor,
                 shadows: [defaultTextShadow],
                 fontSize: 30,
                 fontWeight: FontWeight.w700,
@@ -133,11 +133,20 @@ class ThemeSelection extends StatefulWidget {
   }
 
 class _ThemeSelectionState extends State<ThemeSelection> {
-  bool isLightSelected = true;
 
   @override
   Widget build(BuildContext context) {
+    bool isLightSelected;
     final themeProvider = Provider.of<ThemeProvider>(context);
+    if(themeProvider.currentGradientBg == whiteGradientBg)
+    {
+      isLightSelected = true;
+    }
+    else
+    {
+      isLightSelected = false;
+    }
+
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -149,7 +158,7 @@ class _ThemeSelectionState extends State<ThemeSelection> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: defaultTextColor,
+              color: themeProvider.currentTextColor,
               backgroundColor: Colors.transparent,
               shadows: [defaultTextShadow],
             ),
@@ -172,6 +181,7 @@ class _ThemeSelectionState extends State<ThemeSelection> {
                   if(!isLightSelected) {
                     setState(() {
                       isLightSelected = true;
+                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, whiteGradientBg, defaultTextColor);
                     });
                   }
                 },
@@ -193,6 +203,7 @@ class _ThemeSelectionState extends State<ThemeSelection> {
                   if(isLightSelected) {
                     setState(() {
                       isLightSelected = false;
+                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, darkGradientBg, whiteTextColor);
                     });
                   }
                 },
@@ -231,7 +242,7 @@ class _DisplayNameSelectionState extends State<DisplayNameSelection> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: defaultTextColor,
+              color: themeProvider.currentTextColor,
               backgroundColor: Colors.transparent,
               shadows: [defaultTextShadow],
             ),
@@ -307,6 +318,8 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
     bool is3Selected = themeProvider.currentThemeNum == 3;
     bool is4Selected = themeProvider.currentThemeNum == 4;
 
+    LinearGradient gradientTheme = themeProvider.currentGradientBg;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -317,7 +330,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
-              color: defaultTextColor,
+              color: themeProvider.currentTextColor,
               backgroundColor: Colors.transparent,
               shadows: [defaultTextShadow],
             ),
@@ -347,7 +360,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is3Selected = false;
                           is4Selected = false;
 
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme1, themeColor1, 1);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme1, themeColor1, 1, gradientTheme, themeProvider.currentTextColor);
                         });
                       }
                     },
@@ -382,7 +395,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is3Selected = false;
                           is4Selected = false;     
 
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme2, themeColor2, 2);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme2, themeColor2, 2, gradientTheme, themeProvider.currentTextColor);
                         });
                       }
                     },
@@ -416,7 +429,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is2Selected = false;
                           is3Selected = true;
                           is4Selected = false;
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme3, themeColor3, 3);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme3, themeColor3, 3, gradientTheme, themeProvider.currentTextColor);
                         });
                       }
                     },
@@ -450,7 +463,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is2Selected = false;
                           is3Selected = false;
                           is4Selected = true;
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme4, themeColor4, 4);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme4, themeColor4, 4, gradientTheme, themeProvider.currentTextColor);
                         });
                       }
                     },

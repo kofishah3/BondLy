@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
 // pages imports
-import 'package:bondly/pages/landingpage.dart';
-import 'package:bondly/pages/loginpage.dart';
-import 'package:bondly/pages/signuppage.dart';
-import 'package:bondly/pages/createprofile.dart';
-import 'package:bondly/pages/cp_aboutyourself.dart';
-import 'package:bondly/pages/cp_preferences.dart';
-import 'package:bondly/pages/setupcomplete.dart';
-import 'package:bondly/pages/homepage/homepage.dart';
+import 'package:bondly/screens/user_reg/landingpage.dart';
+import 'package:bondly/screens/user_reg/loginpage.dart';
+import 'package:bondly/screens/user_reg/signuppage.dart';
+import 'package:bondly/screens/create_profile/createprofile.dart';
+import 'package:bondly/screens/create_profile/cp_aboutyourself.dart';
+import 'package:bondly/screens/create_profile/cp_preferences.dart';
+import 'package:bondly/screens/create_profile/setupcomplete.dart';
+import 'package:bondly/screens/main_hub/homepage.dart';
 
 
 void main() {

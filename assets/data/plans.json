@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Anniversary Movie Date!",
+        "Month": "March",
+        "Day": "22",
+        "Year": "2025",
+        "People": ["Yeng"],
+        "Category": "Movies"
+    },
+    {
+        "title": "Anniversary Game Date!",
+        "Month": "March",
+        "Day": "22",
+        "Year": "2025",
+        "People": ["Yeng"],
+        "Category": "Games"
+    },
+    {
+        "title": "After Exam Dinner Out!!",
+        "Month": "March",
+        "Day": "24",
+        "Year": "2025",
+        "People": ["John", "Not John", "Jonathan"],
+        "Category": "Food"
+    }
+]

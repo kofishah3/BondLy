@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
 class CreateProfilePage extends StatefulWidget {
   const CreateProfilePage({super.key});
@@ -22,7 +22,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          gradient: whiteGradientBg
+          gradient: themeProvider.currentGradientBg,
         ),
 
         child: Stack(
@@ -62,6 +62,8 @@ class _CreateProfileState extends State<CreateProfilePage> {
   }
 
   Column userInputFields() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -69,7 +71,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
           inputFontColor: defaultTextColor,
           inputbgColor: Color(0xFFEFE5FF),
           labelText: " First Name:",
-          labelFontColor: defaultTextColor,
+          labelFontColor: themeProvider.currentTextColor,
           labelbgColor: Colors.transparent,
         ),
 
@@ -79,7 +81,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
           inputFontColor: defaultTextColor,
           inputbgColor: Color(0xFFEFE5FF),
           labelText: " Last Name:",
-          labelFontColor: defaultTextColor,
+          labelFontColor: themeProvider.currentTextColor,
           labelbgColor: Colors.transparent,
         ),
 
@@ -89,7 +91,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
           inputFontColor: defaultTextColor,
           inputbgColor: Color(0xFFEFE5FF),
           labelText: " Birth Date:",
-          labelFontColor: defaultTextColor,
+          labelFontColor: themeProvider.currentTextColor,
           labelbgColor: Colors.transparent,
         ),
 
@@ -99,7 +101,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
           inputFontColor: defaultTextColor,
           inputbgColor: Color(0xFFEFE5FF),
           labelText: " Preferred Pronouns:",
-          labelFontColor: defaultTextColor,
+          labelFontColor: themeProvider.currentTextColor,
           labelbgColor: Colors.transparent,
         )
       ],
@@ -107,6 +109,8 @@ class _CreateProfileState extends State<CreateProfilePage> {
   }
 
   Container editProfilePicture() {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Container(
       alignment: Alignment.center,
       child: Column(                
@@ -125,11 +129,11 @@ class _CreateProfileState extends State<CreateProfilePage> {
             child: RichText(                                  
               text: TextSpan(                
                 children: [
-                  WidgetSpan(child: Icon(Icons.edit_square, color: defaultTextColor, size: 20,)),
+                  WidgetSpan(child: Icon(Icons.edit_square, color: themeProvider.currentTextColor, size: 20,)),
                   TextSpan(
                     text: "Edit Photo", 
                     style: TextStyle(
-                      color: defaultTextColor, 
+                      color: themeProvider.currentTextColor, 
                       fontFamily: 'Poppins',
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
@@ -158,7 +162,7 @@ class _CreateProfileState extends State<CreateProfilePage> {
             Text(
               "Create Profile",
               style: TextStyle(
-                color: defaultTextColor,
+                color: themeProvider.currentTextColor,
                 shadows: [defaultTextShadow],
                 fontSize: 30,
                 fontWeight: FontWeight.w700,

@@ -4,17 +4,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
-import 'package:bondly/widgets.dart';
-import 'package:bondly/colors.dart';
+import 'package:bondly/widgets/input_fields.dart';
+import 'package:bondly/providers/theme_provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
       return Scaffold(
@@ -35,6 +35,9 @@ class _LoginPageState extends State<LoginPage> {
 
           child: Stack(
             children: [  
+              // Main login content area                        
+              contentBox(),
+
               // Back button
               SafeArea(
                 child: Align(
@@ -49,9 +52,6 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-
-              // Main login content area                        
-              contentBox(),
               
             ],
           )
@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text (
-            "Welcome Back!",
+            "Nice to meet you!",
             style: TextStyle(
               fontSize: 35,
               fontWeight: FontWeight.w700,
@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
           Container (
             padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             width: double.infinity,
-            height: 460,
+            height: 600,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
               gradient: LinearGradient(
@@ -99,15 +99,26 @@ class _LoginPageState extends State<LoginPage> {
 
                 SizedBox(height: 15,),
 
+                usernameInputField(),
+
+                SizedBox(height: 15,),
+
                 passwordInputField(),
-              
+
+                SizedBox(height: 15,),
+
+                confirmPasswordField(),
+
                 const Spacer(),
 
-                logInButton(),
+                SignUpButton(),
 
                 SizedBox(height: 10,),
-
-                SocialsLogin(mainColor: defaultTextColor,),
+                
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: SocialsLogin(mainColor: defaultTextColor,)
+                ),
               ]
             ),
           ),
@@ -117,27 +128,45 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Column logInButton() {
+  ColoredInputField usernameInputField() {
+    return ColoredInputField(
+                inputFontColor: defaultTextColor,
+                inputbgColor: Color(0xFFEFE5FF),
+                labelText: "Username:",
+                labelFontColor: defaultTextColor,
+                labelbgColor: Colors.transparent,
+              );
+  }
+
+  ColoredInputField confirmPasswordField() {
+    return ColoredInputField(
+                inputFontColor: defaultTextColor,
+                inputbgColor: Color(0xFFEFE5FF),
+                labelText: "Confirm Password:",
+                labelFontColor: defaultTextColor,
+                labelbgColor: Colors.transparent,
+              );
+  }
+
+  Column SignUpButton() {
     final themeProvider = Provider.of<ThemeProvider>(context);
 
     return Column(
       children: [
         CustomGradientButton(
-          text: "Log In", 
+          text: "Sign Up", 
           textColor: Colors.white, 
           gradient: themeProvider.currentGradientTheme,
           heightUser: 40,
           widthUser: double.infinity,
-          onPressed: () {
-            context.go('/homepage');
-          }
+          onPressed: () { context.go('/createprofile'); }
         ),
         
         const SizedBox(height: 5,),
         
         RichText(
           text: TextSpan(
-            text: "Don't have an account? ",
+            text: "Already have an account? ",
             style: TextStyle(
               fontFamily: 'Poppins',
               color: defaultTextColor,
@@ -147,7 +176,7 @@ class _LoginPageState extends State<LoginPage> {
               
             children: [
               TextSpan(
-                text: "Sign Up",
+                text: "Log In",
                 style: TextStyle(
                   color: themeProvider.currentThemeColor,
                   fontSize: 12,
@@ -155,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 recognizer: TapGestureRecognizer() 
                   ..onTap = () {
-                  context.go('/signup');
+                  context.go('/login');
                 }
               )
             ]
@@ -175,37 +204,13 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Column passwordInputField() {
-    return Column(
-      children: [
-        ColoredInputField(
-          inputFontColor: defaultTextColor,
-          inputbgColor: Color(0xFFEFE5FF),
-          labelText: "Password:",
-          labelFontColor: defaultTextColor,
-          labelbgColor: Colors.transparent,
-        ),
-
-        const SizedBox(height: 7),
-
-        //forgot password button
-        Align(        
-          alignment: Alignment.centerRight,
-          child: RichText(
-            text: TextSpan(
-              text: 'Forgot Password?',
-              style: TextStyle(
-                color: defaultTextColor,
-                fontFamily: 'Poppins',
-                fontSize: 13,
-                fontWeight: FontWeight.w500,
-              ),
-              recognizer: TapGestureRecognizer() 
-                ..onTap = () {}
-            )
-          )
-        )
-      ],
+  ColoredInputField passwordInputField() {
+    return ColoredInputField(
+        inputFontColor: defaultTextColor,
+        inputbgColor: Color(0xFFEFE5FF),
+        labelText: "Password:",
+        labelFontColor: defaultTextColor,
+        labelbgColor: Colors.transparent,
     );
   }
 }
