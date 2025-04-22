@@ -181,7 +181,7 @@ class _ThemeSelectionState extends State<ThemeSelection> {
                   if(!isLightSelected) {
                     setState(() {
                       isLightSelected = true;
-                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, whiteGradientBg, defaultTextColor);
+                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, whiteGradientBg, defaultTextColor, baseWhite);
                     });
                   }
                 },
@@ -203,7 +203,7 @@ class _ThemeSelectionState extends State<ThemeSelection> {
                   if(isLightSelected) {
                     setState(() {
                       isLightSelected = false;
-                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, darkGradientBg, whiteTextColor);
+                      Provider.of<ThemeProvider>(context, listen: false).setTheme(themeProvider.currentGradientTheme, themeProvider.currentThemeColor, themeProvider.currentThemeNum, darkGradientBg, whiteTextColor, baseDark);
                     });
                   }
                 },
@@ -360,7 +360,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is3Selected = false;
                           is4Selected = false;
 
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme1, themeColor1, 1, gradientTheme, themeProvider.currentTextColor);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme1, themeColor1, 1, gradientTheme, themeProvider.currentTextColor, themeProvider.currentBaseColor);
                         });
                       }
                     },
@@ -395,7 +395,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is3Selected = false;
                           is4Selected = false;     
 
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme2, themeColor2, 2, gradientTheme, themeProvider.currentTextColor);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme2, themeColor2, 2, gradientTheme, themeProvider.currentTextColor, themeProvider.currentBaseColor);
                         });
                       }
                     },
@@ -429,7 +429,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is2Selected = false;
                           is3Selected = true;
                           is4Selected = false;
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme3, themeColor3, 3, gradientTheme, themeProvider.currentTextColor);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme3, themeColor3, 3, gradientTheme, themeProvider.currentTextColor, themeProvider.currentBaseColor);
                         });
                       }
                     },
@@ -463,7 +463,7 @@ class _ColorSchemeSelectionState extends State<ColorSchemeSelection> {
                           is2Selected = false;
                           is3Selected = false;
                           is4Selected = true;
-                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme4, themeColor4, 4, gradientTheme, themeProvider.currentTextColor);
+                          Provider.of<ThemeProvider>(context, listen: false).setTheme(gradientTheme4, themeColor4, 4, gradientTheme, themeProvider.currentTextColor, themeProvider.currentBaseColor);
                         });
                       }
                     },

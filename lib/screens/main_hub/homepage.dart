@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:bondly/providers/theme_provider.dart';
 import 'package:bondly/screens/main_hub/homepageIndices/hp_homewidget.dart';
 import 'package:bondly/screens/main_hub/homepageIndices/hp_friendswidget.dart';
+import 'package:bondly/screens/main_hub/homepageIndices/hp_planswidget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
 
       FriendsWidget(themeProvider: themeProvider),
 
-      Text('Index 2: Calendar', style: optionStyle),
+      PlansWidget(themeProvider: themeProvider),
       Text('Index 3: Memories', style: optionStyle),
       Text('Index 4: Profile', style: optionStyle),
     ];
@@ -43,10 +44,10 @@ class _HomePageState extends State<HomePage> {
         height: double.infinity,
         decoration: BoxDecoration(gradient: themeProvider.currentGradientBg),
         child: Stack(
-          children:[
-            topRightButtons(),
-
+          children:[        
             _widgetOptions.elementAt(_selectedIndex),
+
+            topRightButtons(),
 
             Align(
               alignment: Alignment.bottomCenter,

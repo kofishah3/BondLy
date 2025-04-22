@@ -8,6 +8,9 @@ final LinearGradient whiteGradientBg = LinearGradient(begin: Alignment.topCenter
 final LinearGradient darkGradientBg = LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF1E1E2E), Color(0xFF23181F)]);
 final LinearGradient unselectedGreyGradient = const LinearGradient(colors: [Color(0xFFCCD2E2),Color(0xFFCCD2E2)], begin: Alignment.centerLeft, end: Alignment.centerRight,);
 
+final Color baseWhite = Color(0xFFFFFFFF);
+final Color baseDark = Color(0xFF1E1E2E);
+
 //gradient options
 final LinearGradient gradientTheme1 = const LinearGradient(colors: [Color(0xFFF04CBA),Color(0xFFF382CE)], begin: Alignment.centerLeft, end: Alignment.centerRight,);
 final Color themeColor1 = Color(0xFFF04CBA);
@@ -24,20 +27,23 @@ class ThemeProvider with ChangeNotifier {
   int _currentThemeNum = 1;
   LinearGradient _currentGradientBg = whiteGradientBg;
   Color _currentTextColor = defaultTextColor;
+  Color _currentBaseColor = baseWhite;
 
   LinearGradient get currentGradientTheme => _currentGradientTheme;
   Color get currentThemeColor => _currentThemeColor;
   int get  currentThemeNum => _currentThemeNum;
   LinearGradient get currentGradientBg => _currentGradientBg;
   Color get currentTextColor => _currentTextColor;
+  Color get currentBaseColor => _currentBaseColor;
 
-  void setTheme(LinearGradient gradient, Color color, int themeNum, LinearGradient gradientBg, Color textC)
+  void setTheme(LinearGradient gradient, Color color, int themeNum, LinearGradient gradientBg, Color textC, Color baseColor)
   {
     _currentGradientTheme = gradient;
     _currentThemeColor = color;
     _currentThemeNum = themeNum;
     _currentGradientBg = gradientBg;
     _currentTextColor = textC;
+    _currentBaseColor = baseColor;
     notifyListeners();
   }
 }

@@ -45,53 +45,55 @@ class HomeWidget extends StatelessWidget {
 
   Column recentActivity() {
     return Column(
-            children: [
-              // Recent activity title text
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Recent Activity",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                    fontSize: 20,
-                    color: themeProvider.currentTextColor,
-                    fontWeight: FontWeight.w600,
-                    shadows: [defaultTextShadow],      
-                  ),
-                ),
-              ), 
+      children: [
+        // Recent activity title text
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text(
+            "Recent Activity",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 20,
+              color: themeProvider.currentTextColor,
+              fontWeight: FontWeight.w600,
+              shadows: [defaultTextShadow],      
+            ),
+          ),
+        ), 
 
-              Column(                  
-                children: [
-                  placeholderContainerWide(),
-                  SizedBox(height: 5,),
-                  placeholderContainerWide(),
-                  SizedBox(height: 5,),
-                  placeholderContainerWide(),
-                  SizedBox(height: 5,),
-                  placeholderContainerWide(),
-                  SizedBox(height: 5,),
-                  placeholderContainerWide(),
-                ],
-              ),     
+        SizedBox(height: 10,),
 
-              SizedBox(height: 10,),
+        Column(                  
+          children: [
+            placeholderContainerWide(),
+            SizedBox(height: 5,),
+            placeholderContainerWide(),
+            SizedBox(height: 5,),
+            placeholderContainerWide(),
+            SizedBox(height: 5,),
+            placeholderContainerWide(),
+            SizedBox(height: 5,),
+            placeholderContainerWide(),
+          ],
+        ),     
 
-              RichText(
-                text: TextSpan(
-                  text: "View All",                                        
-                  style: TextStyle(
-                    fontFamily: 'Poppins',
-                    fontWeight: FontWeight.w600,
-                    color: themeProvider.currentThemeColor,
-                    fontSize: 12,
-                  ),
-                  recognizer: TapGestureRecognizer() 
-                  ..onTap = () {},
-                )
-              )               
-            ],
-          );
+        SizedBox(height: 10,),
+
+        RichText(
+          text: TextSpan(
+            text: "View All",                                        
+            style: TextStyle(
+              fontFamily: 'Poppins',
+              fontWeight: FontWeight.w600,
+              color: themeProvider.currentThemeColor,
+              fontSize: 12,
+            ),
+            recognizer: TapGestureRecognizer() 
+            ..onTap = () {},
+          )
+        )               
+      ],
+    );
   }
 
   Column upcomingPlans() {
@@ -139,10 +141,11 @@ class HomeWidget extends StatelessWidget {
           height: 30,
           child: OutlinedButton(
             style: OutlinedButton.styleFrom(
-              backgroundColor: Colors.transparent,
+              backgroundColor: themeProvider.currentBaseColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-              side: BorderSide(color: themeProvider.currentTextColor.withOpacity(0.8), width: 1),                      
+              side: BorderSide(color: themeProvider.currentTextColor.withOpacity(0.5), width: 1),                      
             ),
+            
             onPressed: () {}, 
             child: Text(
               "+ Add Activity",
@@ -156,7 +159,7 @@ class HomeWidget extends StatelessWidget {
           ),
         ),
 
-        SizedBox(height: 8,),
+        SizedBox(height: 10,),
 
         //ListView for Plans
         SizedBox(
@@ -165,10 +168,10 @@ class HomeWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             clipBehavior: Clip.hardEdge,                
             shrinkWrap: true,
-            itemCount: 3,
+            itemCount: 5,
             itemBuilder: (context, index) {
               return Padding(
-                padding: const EdgeInsets.only(right: 10),
+                padding: const EdgeInsets.only(right: 15),
                 child: PlansCard(themeProvider: themeProvider, index: index,),
               );
             },
@@ -180,29 +183,29 @@ class HomeWidget extends StatelessWidget {
 
   Column welcomeGreeting() {
     return Column(
-              children: [
-                Text(
-                  "Hey, username!",
-                  style: TextStyle(
-                    color: themeProvider.currentTextColor,
-                    shadows: [defaultTextShadow],
-                    fontSize: 35,
-                    fontWeight: FontWeight.w700,
-                    height: 0.8
-                  ),
-                ),
-        
-                Text(
-                  "Any plans with anyone?",
-                  style: TextStyle(
-                    color: themeProvider.currentTextColor,
-                    shadows: [defaultTextShadow],
-                    fontSize: 25,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            );
+      children: [
+        Text(
+          "Hey, username!",
+          style: TextStyle(
+            color: themeProvider.currentTextColor,
+            shadows: [defaultTextShadow],
+            fontSize: 35,
+            fontWeight: FontWeight.w700,
+            height: 0.8
+          ),
+        ),
+
+        Text(
+          "Any plans with anyone?",
+          style: TextStyle(
+            color: themeProvider.currentTextColor,
+            shadows: [defaultTextShadow],
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ],
+    );
   }
 
   Container placeholderContainerWide() {
@@ -211,11 +214,17 @@ class HomeWidget extends StatelessWidget {
       height: 30,
       width: double.infinity,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        color: themeProvider.currentBaseColor,
         border: Border.all(color: themeProvider.currentTextColor.withOpacity(0.5), width: 1,),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 10,
+          )
+        ]
       ),
-      child: Text("PLACEHOLDER"),
+      child: Text("PLACEHOLDER", style: TextStyle(color: themeProvider.currentTextColor),), 
     );
   }
 }

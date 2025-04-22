@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:bondly/providers/theme_provider.dart';
+
 class PlansCard extends StatelessWidget {
   final ThemeProvider themeProvider;
   final int index;
@@ -22,13 +23,19 @@ class PlansCard extends StatelessWidget {
       padding: EdgeInsets.all(5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: Colors.white,
+        color: themeProvider.currentBaseColor,
         border: Border.all(
           color: index == 0 ? themeProvider.currentThemeColor : defaultGrey, 
           width: index == 0 ? 2 : 1,
-        )
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 15,
+          )
+        ]
       ),               
-      child: Text("PLACEHOLDER"), 
+      child: Text("PLACEHOLDER", style: TextStyle(color: themeProvider.currentTextColor),), 
     );
   }  
 }

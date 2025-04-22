@@ -85,7 +85,7 @@ class CustomGradientButton extends StatelessWidget {
               onPressed: onPressed,
               child: Text(
                 text,
-                style: TextStyle(color: textColor, fontSize: 16),
+                style: TextStyle(color: textColor, fontSize: heightUser/2 - 4),
               ),
             ),
           ),
