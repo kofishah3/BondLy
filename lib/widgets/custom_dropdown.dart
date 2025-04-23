@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:bondly/providers/theme_provider.dart';
 
+// tentative for replacement because it only allows one selection
+
 class CustomDropDownFilter extends StatefulWidget {
   const CustomDropDownFilter({
     super.key,
@@ -34,36 +36,46 @@ class _CustomDropDownFilterState extends State<CustomDropDownFilter> {
 
   @override
   Widget build(BuildContext context) {    
-    return Column(      
+    return Row(                
       children: [
-        Container(  
-          height: 45,                 
-          decoration: BoxDecoration(
-            color: widget.dropDownColor,
-            borderRadius: BorderRadius.circular(10)
-          ),
+        Icon(
+          widget.chosenIcon,
+          size: 27,
+          color: widget.labelFontColor.withOpacity(0.7),
+        ),
+        const SizedBox(width: 10,),
 
-          child: DropdownButton(        
-            padding: EdgeInsets.all(10),        
-            value: dropDownValue,
-            icon: Icon(
-              widget.chosenIcon,
-              size: 30,
-              color: widget.labelFontColor.withOpacity(0.7),
+        Expanded(
+          child: Container(  
+              height: 37,                 
+              decoration: BoxDecoration(
+                color: widget.dropDownColor,
+                borderRadius: BorderRadius.circular(10)
+              ),
+          
+              child: DropdownButton(        
+                padding: EdgeInsets.all(10),        
+                value: dropDownValue,              
+                elevation: 10,
+                underline: SizedBox(),
+                dropdownColor: widget.dropDownColor,
+
+                onChanged: (dynamic value) {
+                  setState(() {
+                    dropDownValue = value!;
+                  });
+                },
+                items:
+                    widget.items.map<DropdownMenuItem<String>>((dynamic value) {
+                  return DropdownMenuItem(value: value, child: Center(child: Text(value, style: TextStyle(color: defaultTextColor, fontSize: 12),)));
+                }).toList(),
+
+                isDense: true,
+                menuMaxHeight: 250,
+                isExpanded: true,
+              )
             ),
-            elevation: 10,
-            onChanged: (dynamic value) {
-              setState(() {
-                dropDownValue = value!;
-              });
-            },
-            items:
-                widget.items.map<DropdownMenuItem<String>>((dynamic value) {
-              return DropdownMenuItem(value: value, child: Text(value));
-            }).toList(),
-            isExpanded: true,
-          )
-        )
+        ),
       ],
     );
   }

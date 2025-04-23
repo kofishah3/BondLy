@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import 'package:bondly/providers/theme_provider.dart';
 import 'package:bondly/widgets/custom_dropdown.dart';
+import 'package:bondly/widgets/custom_sortdropdown.dart';
+
 
 const List<String> tempPeopleList = ['All', 'Person1', 'Person2', 'Person3', 'Person4',];
 const List<String> tempFilterList = ['None', 'Movies', 'Games', 'Hangout', 'Travel',];
+const List<String> tempSortList = ['Nearest', 'Farthest',];
 
 class PlansWidget extends StatelessWidget {
   const PlansWidget({
@@ -34,34 +37,51 @@ class PlansWidget extends StatelessWidget {
                   ),
                   Tab(text: "Calendar"),
                 ],
-                
+
               ),
               Expanded(
                 child: TabBarView(
                   children: [
                     //first tab, for activities
-                    Column(
-                      children: [
-                        SizedBox(height: 10,),
-                        CustomDropDownFilter(
-                          themeProvider: themeProvider,
-                          chosenIcon: Icons.people_outline_rounded,
-                          items: tempPeopleList,
-                          dropDownColor: themeProvider.currentTextColor
-                              .withOpacity(0.3),
-                          labelFontColor: themeProvider.currentTextColor
-                        ),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      child: Column(
+                        children: [         
+                          const SizedBox(height: 5,),
+                                       
+                          CustomDropDownFilter(
+                            themeProvider: themeProvider,
+                            chosenIcon: Icons.people_outline_rounded,
+                            items: tempPeopleList,
+                            dropDownColor: defaultGrey,
+                            labelFontColor: themeProvider.currentTextColor
+                          ),
+                      
+                          SizedBox(height: 5,),
+                          
+                          CustomDropDownFilter(
+                            themeProvider: themeProvider,
+                            chosenIcon: Icons.filter_alt_outlined,
+                            items: tempFilterList,
+                            dropDownColor: defaultGrey,
+                            labelFontColor: themeProvider.currentTextColor
+                          ),
 
-                        SizedBox(height: 10,),
-                        CustomDropDownFilter(
-                          themeProvider: themeProvider,
-                          chosenIcon: Icons.filter_alt_outlined,
-                          items: tempFilterList,
-                          dropDownColor: themeProvider.currentTextColor
-                              .withOpacity(0.3),
-                          labelFontColor: themeProvider.currentTextColor
-                        )
-                      ],
+                          SizedBox(height: 10,),
+                          
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: CustomSortFilter(
+                              themeProvider: themeProvider,
+                              chosenIcon: Icons.filter_alt_outlined,
+                              items: tempSortList,
+                              dropDownColor: themeProvider.currentBaseColor,
+                              labelFontColor: themeProvider.currentTextColor
+                            ),
+                          )
+                          
+                        ],
+                      ),
                     ),
 
                     //second tab for calendar

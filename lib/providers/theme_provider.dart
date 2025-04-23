@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//base colors
 final Color defaultTextColor = Color(0xFF2E3A59);
 final Color whiteTextColor = Color(0xFFEEEEEE);
 final Color defaultGrey = Color(0xFFCCD2E2);
